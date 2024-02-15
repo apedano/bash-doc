@@ -1,6 +1,7 @@
 # bash-doc
 
 ## `if` statement
+
 ```bash
 if [ -r $1 ] && [ -s $1 ]
 then
@@ -8,32 +9,33 @@ echo This file is useful.
 fi
 ```
 
-
 ### Checks
 
-| Operator              | Description                                                           |
-|-----------------------|-----------------------------------------------------------------------|
-| ! EXPRESSION          | The EXPRESSION is false.                                              |
-| -n STRING             | The length of STRING is greater than zero.                            |
-| -z STRING             | The lengh of STRING is zero (ie it is empty).                         |
-| Double-bracket syntax only:[[ STRING1 =~ REGEXPATTERN ]] | STRING1 matches REGEXPATTERN       |
-| STRING1 = STRING2     | STRING1 is equal to STRING2                                           |
-| STRING1 != STRING2    | STRING1 is not equal to STRING2                                       |
-| INTEGER1 -eq INTEGER2 | INTEGER1 is numerically equal to INTEGER2                             |
-| INTEGER1 -gt INTEGER2 | INTEGER1 is numerically greater than INTEGER2                         |
-| INTEGER1 -lt INTEGER2 | INTEGER1 is numerically less than INTEGER2                            |
-| -d FILE               | FILE exists and is a directory.                                       |
-| -f FILE               | A regular file is neither a block or character special file nor a directory |
-| -e FILE               | FILE exists.                                                          |
-| -r FILE               | FILE exists and the read permission is granted.                       |
-| -s FILE               | FILE exists and it's size is greater than zero (ie. it is not empty). |
-| -w FILE               | FILE exists and the write permission is granted.                      |
-| -x FILE               | FILE exists and the execute permission is granted.                    |
-
+| Operator                                                 | Description                                                                 |
+|----------------------------------------------------------|-----------------------------------------------------------------------------|
+| ! EXPRESSION                                             | The EXPRESSION is false.                                                    |
+| -n STRING                                                | The length of STRING is greater than zero.                                  |
+| -z STRING                                                | The lengh of STRING is zero (ie it is empty).                               |
+| Double-bracket syntax only:[[ STRING1 =~ REGEXPATTERN ]] | STRING1 matches REGEXPATTERN                                                |
+| STRING1 = STRING2                                        | STRING1 is equal to STRING2                                                 |
+| STRING1 != STRING2                                       | STRING1 is not equal to STRING2                                             |
+| INTEGER1 -eq INTEGER2                                    | INTEGER1 is numerically equal to INTEGER2                                   |
+| INTEGER1 -gt INTEGER2                                    | INTEGER1 is numerically greater than INTEGER2                               |
+| INTEGER1 -lt INTEGER2                                    | INTEGER1 is numerically less than INTEGER2                                  |
+| -d FILE                                                  | FILE exists and is a directory.                                             |
+| -f FILE                                                  | A regular file is neither a block or character special file nor a directory |
+| -e FILE                                                  | FILE exists.                                                                |
+| -r FILE                                                  | FILE exists and the read permission is granted.                             |
+| -s FILE                                                  | FILE exists and it's size is greater than zero (ie. it is not empty).       |
+| -w FILE                                                  | FILE exists and the write permission is granted.                            |
+| -x FILE                                                  | FILE exists and the execute permission is granted.                          |
 
 ## Arguments
+
 ### Argument check
+
 `$#` represents the number of arguments
+
 ```bash
 if [ $# -eq 0 ]
   then
@@ -43,12 +45,15 @@ fi
 
 ### Argument read
 
-
-
-
-
+```bash
+if [ -z "$1" ]
+  then
+    echo "No argument supplied"
+fi
+```
 
 ## Processes
+
 ### Process exit code check
 
 ```bash
@@ -60,4 +65,24 @@ else
   echo "Project $PROJECT_NAME dosn't exist. Aborting..."
   exit 1
 fi
+```
+
+### Exit if any command in the script fail
+
+```bash
+#!/bin/bash
+
+set -e 
+...
+```
+
+
+### Run external script
+
+Remember to add the `#!/bin/bash` line on top of the external script
+
+```bash
+#!/bin/bash
+...
+sh <PATH_TO_SH_FILE_INCLUDING_EXTENSION>
 ```
