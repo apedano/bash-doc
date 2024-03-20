@@ -52,6 +52,40 @@ if [ -z "$1" ]
 fi
 ```
 
+## Array
+
+### Initialization
+```bash
+#init files array
+filesArray=()
+```
+Initializes the array with an output from a commans
+```bash
+#Finds the skip true in pom files
+filesWithSkipDeployTrue=$(find ./ -type f -name "pom.xml" | xargs grep -loP "<maven.deploy.skip>([^f]*)</maven.deploy.skip>")
+
+#init files array
+filesArray=()
+
+#fills the array
+for i in $filesWithSkipDeployTrue; do filesArray+=($i) ; done
+
+for fileMatched in "${filesArray[@]}"
+do
+  echo "Found file: $fileMatched"
+done
+```
+
+
+
+## Flow control
+
+### FOR
+Loop over previos command output
+```bash
+
+```
+
 ## Processes
 
 ### Process exit code check
@@ -86,3 +120,4 @@ Remember to add the `#!/bin/bash` line on top of the external script
 ...
 sh <PATH_TO_SH_FILE_INCLUDING_EXTENSION>
 ```
+
