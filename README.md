@@ -76,7 +76,50 @@ do
 done
 ```
 
+### Index access
 
+```bash
+!/bin/bash
+# Create an array
+declare -A fruits
+ 
+# Add elements (fruit names) by array key named red and yellow 
+fruits[red]='Cherries,  Watermelon'
+fruits[yellow]='Apricots, Pineapples'
+ 
+echo "Printing all elements of array named 'fruits':'"
+echo "${fruits[@]}"
+echo
+ 
+echo "Printing all keys of array named 'fruits':'"
+echo "${!fruits[@]}"
+echo
+ 
+echo "Printing all array element using the key named 'red':"
+echo "${fruits[red]}"
+echo
+ 
+echo "Printing all array element using the key named 'yellow':"
+echo "${fruits[yellow]}"
+echo
+ 
+echo "Printing bash array using a key and values:"
+echo -e "-----------------------------------------"
+echo -e "KEY\t\t -> VALUES:"
+echo -e "-----------------------------------------"
+for key in "${!fruits[@]}"
+do
+    echo -e "${key}\t\t -> ${fruits[$key]}"
+done
+```
+
+### Array Length
+
+```bash
+$ a=(1 2 3 4)
+$ echo ${#a[@]}
+4
+```
 
 ## Flow control
 
