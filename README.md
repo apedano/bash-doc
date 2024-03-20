@@ -164,3 +164,35 @@ Remember to add the `#!/bin/bash` line on top of the external script
 sh <PATH_TO_SH_FILE_INCLUDING_EXTENSION>
 ```
 
+## File manipulation
+
+### Find files based on content
+```bash
+#Finds the skip true in pom files
+filesWithSkipDeployT=$(find ./ -type f -name "pom.xml" | xargs grep -loP "<maven.deploy.skip>([^f]*)</maven.deploy.skip>")
+```
+
+### Change directory based on file path
+
+```bash
+for fileMatched in "${filesArray[@]}" #example ./obp-AfhandelenAanmelding/pom.xml
+do
+  echo "Found file with skip deploy false: $fileMatched"
+  cd $(dirname "$fileMatched") 
+  echo "Current dir $(pwd)" #Current dir /c/ws/git/olo/olo-kor-contracts/obp-AfhandelenAanmelding
+done
+```
+
+### Raplace content or replace xml tag value in file 
+the `-i` option updates the current file
+```bash
+sed -i '/maven.deploy.skip/{s/false/true/}' ./pom.xml
+```
+* The first part do a search in the file for `maven.deploy.skip` which is the tag name we are looking for
+* `/s/false/` the text to replace from the position found
+* `true/` the replacement value
+
+
+
+
+
