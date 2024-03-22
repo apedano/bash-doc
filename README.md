@@ -8,6 +8,17 @@ then
 echo This file is useful.
 fi
 ```
+Alternative format
+
+```bash
+if [[ -z "$filesWithSkipDeployFalse" ]]; then 
+  echo "No files have been found with skip deploy false. Exiting..."
+  exit 132
+else
+  echo "Files with skip deploy false exist..."
+fi
+```
+
 
 ### Checks
 
