@@ -28,6 +28,7 @@ fi
 | -n STRING                                                | The length of STRING is greater than zero.                                  |
 | -z STRING                                                | The lengh of STRING is zero (ie it is empty).                               |
 | Double-bracket syntax only:[[ STRING1 =~ REGEXPATTERN ]] | STRING1 matches REGEXPATTERN                                                |
+| Double-bracket syntax only:[[ STRING1 == "PATTERN" ]]    | STRING1 is contained in the PATTERN
 | STRING1 = STRING2                                        | STRING1 is equal to STRING2                                                 |
 | STRING1 != STRING2                                       | STRING1 is not equal to STRING2                                             |
 | INTEGER1 -eq INTEGER2                                    | INTEGER1 is numerically equal to INTEGER2                                   |
@@ -40,6 +41,17 @@ fi
 | -s FILE                                                  | FILE exists and it's size is greater than zero (ie. it is not empty).       |
 | -w FILE                                                  | FILE exists and the write permission is granted.                            |
 | -x FILE                                                  | FILE exists and the execute permission is granted.                          |
+
+## String
+
+### Replace
+
+```bash
+#tr to remove whitespaces
+#tr to convert upper case to lower case characters
+#tr to delete (-d) the complement (-c) of digits and letters 
+echo $someString | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]' | tr -dc '[:alnum:]'
+```
 
 ## Arguments
 
