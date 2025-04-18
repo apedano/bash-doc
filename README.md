@@ -105,7 +105,11 @@ done
 !/bin/bash
 # Create an array
 declare -A fruits
- 
+
+for index in "${fruits[@]}"; do
+  echo "Index: $index, Value: ${fruits[$index]}"
+done
+
 # Add elements (fruit names) by array key named red and yellow 
 fruits[red]='Cherries,  Watermelon'
 fruits[yellow]='Apricots, Pineapples'
