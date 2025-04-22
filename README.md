@@ -192,10 +192,22 @@ unset harborRepositoryToDeploymentRepoMap[new-key]
 
 ## Flow control
 
-### FOR
-Loop over previos command output
+### IF
 ```bash
+if [ $? != 0 ]; then
+  echo "Error in call to Harbor API"
+  exit 1
+else
+  echo "API call ok"
+fi
+```
 
+### FOR
+```bash
+for deploymentRepo in "${!uniqueDeploymentRepos[@]}"; do
+  echo "Cloning repo [$deploymentRepo]"
+  git clone ssh://git@git.belastingdienst.nl:7999/essentials/${deploymentRepo}.git
+done
 ```
 
 ## Processes
