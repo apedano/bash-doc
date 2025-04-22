@@ -188,7 +188,7 @@ echo "${harborRepositoryToDeploymentRepoMap[new-key]}"
 
 #Deleting pair
 unset harborRepositoryToDeploymentRepoMap[new-key]
-```bash
+```
 
 ## Flow control
 
