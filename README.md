@@ -148,6 +148,48 @@ $ echo ${#a[@]}
 4
 ```
 
+## Multivalued array, associative array
+### Declaration
+```bash
+eoDeploymentRepoName="olo-kor-eo-deployment"
+elDeploymentRepoName="olo-kor-el-deployment"
+
+#Associative array definition
+declare -A harborRepositoryToDeploymentRepoMap=(
+  [olo-kor-eo-service]=$eoDeploymentRepoName
+  [olo-kor-eo-mapper-service]=$eoDeploymentRepoName
+  [olo-kor-el-service]=$elDeploymentRepoName
+  [olo-kor-el-mapper-service]=$elDeploymentRepoName
+  [olo-kor-mocks]=$elDeploymentRepoName
+  [olo-kor-taxud-validation-service]=$elDeploymentRepoName
+  )
+```
+### Operations
+```bash
+#Retrieving keys
+for key in "${!harborRepositoryToDeploymentRepoMap[@]}"; do echo "$key"; done
+
+#Retrieving values
+for value in "${harborRepositoryToDeploymentRepoMap[@]}"; do echo "$value"; done
+
+#Specific value
+echo "Specific value: ${harborRepositoryToDeploymentRepoMap[olo-kor-eo-service]}"
+echo "Specific value: ${harborRepositoryToDeploymentRepoMap['olo-kor-eo-service']}"
+
+# Retrieving key-value pairs
+for i in "${!harborRepositoryToDeploymentRepoMap[@]}"; do echo "${i}: ${harborRepositoryToDeploymentRepoMap[$i]}"; done #ex: olo-kor-eo-service: olo-kor-eo-deployment
+
+# Number of elements
+echo "${#harborRepositoryToDeploymentRepoMap[@]}" #6
+
+#Adding/Overwriting element
+harborRepositoryToDeploymentRepoMap[new-key]="new-value" #overwrites if the key exists
+echo "${harborRepositoryToDeploymentRepoMap[new-key]}"
+
+#Deleting pair
+unset harborRepositoryToDeploymentRepoMap[new-key]
+```bash
+
 ## Flow control
 
 ### FOR
