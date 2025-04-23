@@ -9,7 +9,7 @@ echo "" | openssl s_client -connect olo.kor.eo.ont.belastingdienst.nl:443 -showc
 ## Create Basic authentication string
 
 ```bash
-echo "<username>:<password>" | base64
+echo -n "<username>:<password>" | base64
 ```
 So that the basic auth header becomes
 
