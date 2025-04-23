@@ -1,9 +1,15 @@
 # Networking
 
-## Certificate chain verification agains a host
+## OPENSSL
+### Certificate chain verification agains a host
 
 ```bash
-echo "" | openssl s_client -connect olo.kor.eo.ont.belastingdienst.nl:443 -showcerts 2>/dev/null
+echo "" | openssl s_client -connect ccn2-wsgw.dmz.belastingdienst.nl:443 -showcerts 2>/dev/null
+```
+
+### Call with supported signature algorithms
+```bash
+echo "" | openssl s_client -connect ccn2-wsgw.dmz.belastingdienst.nl:443 -showcerts -tls1_2 2>/dev/null
 ```
 
 
