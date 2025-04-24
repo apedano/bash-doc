@@ -74,6 +74,8 @@ List the elements in a for loop to see the difference!
 ## Return value
 
 ### Using `return` statement
+The return is the exist status code 
+
 ```bash
 test_function() {
         echo Test
@@ -92,8 +94,7 @@ test_function() {
         echo Test
 }
 result=$(test_function)
-echo $result is saved in a variable for later use
-
+echo $result is saved in a variable for later use #Test is saved in a variable for later use
 ```
 
 
