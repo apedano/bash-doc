@@ -97,7 +97,37 @@ result=$(test_function)
 echo $result is saved in a variable for later use #Test is saved in a variable for later use
 ```
 
+### Map function return into an array
+What is echoed by the function is mapped to the array using the `mapfile` command
 
+```bash
+# ========== function to extract fields from input JSON content  ==========
+# shellcheck disable=SC1009
+function extractFieldsAsArrayFromJsonResponse() {
+  local rawJsonContent="$1"
+  local jqSelector="$2"
+  jsonFields=$(echo "$rawJsonContent" | jq -cr $jqSelector)
+  while read -r jsonField; do
+    #The jsonValue contains some strange char which invalidates following tag matching.
+    # sed replaces chars except the specified in the argument
+    cleanedJsonField=$(echo $jsonField | sed 's/[^a-zA-z0-9]\-\.//g')
+    #this echo will be captured in the mapfile from the output of the function
+    echo "$cleanedJsonField"
+  done <<< "$jsonFields"
+}
+
+#function call
+repositoryDetailsResponse=$(curl -s ${repositoryDetailsUrl})
+mapfile -t digestArray < <(extractFieldsAsArrayFromJsonResponse "$repositoryDetailsResponse" ".[].digest")
+
+for digest in "${digestArray[@]}"; do
+  echo "- $digest"
+done
+```
+- `<(extractFieldsAsArrayFromJsonResponse "$repositoryDetailsResponse" ".[].digest")` is the process substitution treating the ouptut (the echo in the function) as a file
+- `mapfile -t <array_name> < ...`
+        -`mapfile` reads each line from the process substitution file into the <array_name>
+        -`-t` removes the trailing newline
 
 
 
