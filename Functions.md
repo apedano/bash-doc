@@ -59,6 +59,16 @@ Invocation
 ```bash
 arguments hello world
 
-
+There are 2 arguments
+Argument 1 is hello
+Argument 2 is world
+<hello world> and <hello world> are the same.
+List the elements in a for loop to see the difference!
+* gives:
+<hello world>
+@ gives:
+<hello>
+<world>
 ```
+
 
