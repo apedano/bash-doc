@@ -1,86 +1,23 @@
 # bash-doc
 
-## `if` statement
+# Data types
+
+## boolean
 
 ```bash
-if [ -r $1 ] && [ -s $1 ]
-then
-echo This file is useful.
-fi
-```
-Alternative format
+#!/bin/bash
 
-```bash
-if [[ -z "$filesWithSkipDeployFalse" ]]; then 
-  echo "No files have been found with skip deploy false. Exiting..."
-  exit 132
+# Declare a boolean variable using 'true' and 'false'
+application_enabled=true
+
+# Check the boolean variable
+if $application_enabled; then
+	echo "Application enabled."
 else
-  echo "Files with skip deploy false exist..."
+	echo "Application disabled."
 fi
 ```
 
-
-### Checks
-
-| Operator                                                 | Description                                                                 |
-|----------------------------------------------------------|-----------------------------------------------------------------------------|
-| ! EXPRESSION                                             | The EXPRESSION is false.                                                    |
-| -n STRING                                                | The length of STRING is greater than zero.                                  |
-| -z STRING                                                | The lengh of STRING is zero (ie it is empty).                               |
-| Double-bracket syntax only:[[ STRING1 =~ REGEXPATTERN ]] | STRING1 matches REGEXPATTERN                                                |
-| Double-bracket syntax only:[[ STRING1 == "PATTERN" ]]    | STRING1 is contained in the PATTERN
-| STRING1 = STRING2                                        | STRING1 is equal to STRING2                                                 |
-| STRING1 != STRING2                                       | STRING1 is not equal to STRING2                                             |
-| INTEGER1 -eq INTEGER2                                    | INTEGER1 is numerically equal to INTEGER2                                   |
-| INTEGER1 -gt INTEGER2                                    | INTEGER1 is numerically greater than INTEGER2                               |
-| INTEGER1 -lt INTEGER2                                    | INTEGER1 is numerically less than INTEGER2                                  |
-| -d FILE                                                  | FILE exists and is a directory.                                             |
-| -f FILE                                                  | A regular file is neither a block or character special file nor a directory |
-| -e FILE                                                  | FILE exists.                                                                |
-| -r FILE                                                  | FILE exists and the read permission is granted.                             |
-| -s FILE                                                  | FILE exists and it's size is greater than zero (ie. it is not empty).       |
-| -w FILE                                                  | FILE exists and the write permission is granted.                            |
-| -x FILE                                                  | FILE exists and the execute permission is granted.                          |
-
-```bash
-  if [[ $currentTag =~ ^.*([0-9]+\.){2}[0-9]+.*$ ]]; then
-    echo "The tag matches semantic version pattern XX.YY.ZZ"
-  fi
-```
-
-
-## String
-
-### Replace
-
-```bash
-#tr to remove whitespaces
-#tr to convert upper case to lower case characters
-#tr to delete (-d) the complement (-c) of digits and letters 
-echo $someString | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]' | tr -dc '[:alnum:]'
-```
-
-## Arguments
-
-### Argument check
-
-`$#` represents the number of arguments
-
-```bash
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied"
-fi
-```
-
-### Argument read
-
-```bash
-if [ -z "$1" ]
-  then
-    echo "No argument supplied"
-fi
-```
 
 ## Array
 
@@ -196,6 +133,102 @@ echo "${harborRepositoryToDeploymentRepoMap[new-key]}"
 #Deleting pair
 unset harborRepositoryToDeploymentRepoMap[new-key]
 ```
+
+## `if` statement
+
+```bash
+if [ -r $1 ] && [ -s $1 ]
+then
+echo This file is useful.
+fi
+```
+Alternative format
+
+```bash
+if [[ -z "$filesWithSkipDeployFalse" ]]; then 
+  echo "No files have been found with skip deploy false. Exiting..."
+  exit 132
+else
+  echo "Files with skip deploy false exist..."
+fi
+```
+
+Ternary operation
+
+````bash
+# Declare a boolean variable using a conditional ternary operator
+application_enabled=true
+
+# Ternary operator simulation
+message=$([ "$application_enabled" == true ] && echo "Application enabled." || echo "Application disabled.")
+
+# Print the message
+echo $message
+```
+
+
+### Checks
+
+| Operator                                                 | Description                                                                 |
+|----------------------------------------------------------|-----------------------------------------------------------------------------|
+| ! EXPRESSION                                             | The EXPRESSION is false.                                                    |
+| -n STRING                                                | The length of STRING is greater than zero.                                  |
+| -z STRING                                                | The lengh of STRING is zero (ie it is empty).                               |
+| Double-bracket syntax only:[[ STRING1 =~ REGEXPATTERN ]] | STRING1 matches REGEXPATTERN                                                |
+| Double-bracket syntax only:[[ STRING1 == "PATTERN" ]]    | STRING1 is contained in the PATTERN
+| STRING1 = STRING2                                        | STRING1 is equal to STRING2                                                 |
+| STRING1 != STRING2                                       | STRING1 is not equal to STRING2                                             |
+| INTEGER1 -eq INTEGER2                                    | INTEGER1 is numerically equal to INTEGER2                                   |
+| INTEGER1 -gt INTEGER2                                    | INTEGER1 is numerically greater than INTEGER2                               |
+| INTEGER1 -lt INTEGER2                                    | INTEGER1 is numerically less than INTEGER2                                  |
+| -d FILE                                                  | FILE exists and is a directory.                                             |
+| -f FILE                                                  | A regular file is neither a block or character special file nor a directory |
+| -e FILE                                                  | FILE exists.                                                                |
+| -r FILE                                                  | FILE exists and the read permission is granted.                             |
+| -s FILE                                                  | FILE exists and it's size is greater than zero (ie. it is not empty).       |
+| -w FILE                                                  | FILE exists and the write permission is granted.                            |
+| -x FILE                                                  | FILE exists and the execute permission is granted.                          |
+
+```bash
+  if [[ $currentTag =~ ^.*([0-9]+\.){2}[0-9]+.*$ ]]; then
+    echo "The tag matches semantic version pattern XX.YY.ZZ"
+  fi
+```
+
+
+## String
+
+### Replace
+
+```bash
+#tr to remove whitespaces
+#tr to convert upper case to lower case characters
+#tr to delete (-d) the complement (-c) of digits and letters 
+echo $someString | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]' | tr -dc '[:alnum:]'
+```
+
+## Arguments
+
+### Argument check
+
+`$#` represents the number of arguments
+
+```bash
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied"
+fi
+```
+
+### Argument read
+
+```bash
+if [ -z "$1" ]
+  then
+    echo "No argument supplied"
+fi
+```
+
 
 ## Flow control
 
