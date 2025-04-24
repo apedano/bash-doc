@@ -85,6 +85,19 @@ echo The exit status is:
 echo $?
 ```
 
+### Using `echo` statement
+An alternative method is to echo the function's result and assign the output to a variable.
+```bash
+test_function() {
+        echo Test
+}
+result=$(test_function)
+echo $result is saved in a variable for later use
+
+```
+
+
+
 
 
 
