@@ -29,13 +29,14 @@ f2
 f1
 ```
 
+## Arguments
 
+|Argument|Role|
+|--- |--- |
+|$0|Reserves the function's name when defined in the terminal. When defined in a bash script, $0 returns the script's name and location.|
+|$1, $2, etc.|Corresponds to the argument's position after the function name.|
+|$#|Holds the count of positional arguments passed to the function.|
+|$@ and $*|Hold the positional arguments list and function the same when used this way.|
+|"$@"|Expands the list to separate strings. For example "$1", "$2", etc.|
+|"$*"|Expands the list into a single string, separating parameters with a space. For example "$1 $2" etc.|
 
-
-Argument	Role
-$0	Reserves the function's name when defined in the terminal. When defined in a bash script, $0 returns the script's name and location.
-$1, $2, etc.	Corresponds to the argument's position after the function name.
-$#	Holds the count of positional arguments passed to the function.
-$@ and $*	Hold the positional arguments list and function the same when used this way.
-"$@"	Expands the list to separate strings. For example "$1", "$2", etc.
-"$*"	Expands the list into a single string, separating parameters with a space. For example "$1 $2" etc.
