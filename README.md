@@ -42,6 +42,13 @@ fi
 | -w FILE                                                  | FILE exists and the write permission is granted.                            |
 | -x FILE                                                  | FILE exists and the execute permission is granted.                          |
 
+```bash
+  if [[ $currentTag =~ ^.*([0-9]+\.){2}[0-9]+.*$ ]]; then
+    echo "The tag matches semantic version pattern XX.YY.ZZ"
+  fi
+```
+
+
 ## String
 
 ### Replace
