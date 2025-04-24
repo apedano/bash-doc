@@ -7,9 +7,9 @@
 echo "" | openssl s_client -connect ccn2-wsgw.dmz.belastingdienst.nl:443 -showcerts 2>/dev/null
 ```
 
-### Call with supported signature algorithms
+### Call with TSL1.2 support
 ```bash
-echo "" | openssl s_client -connect ccn2-wsgw.dmz.belastingdienst.nl:443 -showcerts -tls1_2 2>/dev/null
+openssl s_client -connect ccn2-wsgw.acc.dmz.belastingdienst.nl:443 -tls1_2
 ```
 
 
