@@ -57,6 +57,8 @@ If we want to verify the file we can use
 ```
  openssl x509 -in ca-bundle.crt -text -noout
 ```
+Example: [file](ca-bundle.crt)
+
 
 ## Curl
 
